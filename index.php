@@ -1,27 +1,8 @@
 <?php
-    session_start();
-
+    include('./src/php/task.php');
+    
     if( !isset($_SESSION['tasks'])){
         $_SESSION['tasks'] = array();
-    }
-
-    if( isset($_GET['task_name'])){
-        if ($_GET['task_name'] != ""){
-            array_push($_SESSION['tasks'], $_GET['task_name']);
-            unset($_GET['task_name']);
-        } else{
-            $_SESSION['message'] = 'O campo nome da tarefa não pode ser vazio!';
-        }
-    }
-
-    if( isset($_GET['clear'])){
-        unset($_SESSION['tasks']);
-        unset($_GET['clear']);
-    }
-
-    if( isset($_GET['key'])){
-        array_splice( $_SESSION['tasks'], $_GET['key'], 1);
-        unset($_GET['key']);
     }
 ?>
 
@@ -44,9 +25,16 @@
             <h1>Gerenciador de Tarefas</h1>
         </header>
         <div class="form">
-            <form action="" method="get">
+            <form action="./src/php/task.php" method="post" enctype="multipart/form-data">
+                <input type="hidden" name="insert" value="insert">
                 <label for="task_name">Tarefas:</label>
                 <input type="text" name="task_name" id="task_name" placeholder = 'Nome da Tarefa'>
+                <label for="task_description">Descrição:</label>
+                <input type="text" name="task_description" placeholder="Descrição da Tarefa">
+                <label for="task_date">Data:</label>
+                <input type="date" name="task_date">
+                <label for="task_image">Imagem:</label>
+                <input type="file" name="task_image">
                 <button type = 'submit'>Cadastrar</button>
             </form>
             <?php
@@ -60,17 +48,18 @@
         <div class="list-tasks">
 
             <?php
-                if (isset($_SESSION['tasks'])){
+                if (null!== $_SESSION['tasks']){
                     echo "<ul>";
 
-                    foreach ( $_SESSION['tasks'] as $key => $task){
-                        echo" <li> 
-                                <span> $task </span>
+                    foreach ($_SESSION['tasks'] as $key => $task){
+                        echo"
+                            <li>
+                                <a href= 'details.php?key$key'>" . $task['task_name'] . "</a>
                                 <button type='button' class='btn-clear' onclick='delet_$key()'>Remover</button>
                                 <script>
                                     function delet_$key(){
                                         if( confirm('Confirmar remoção?')){
-                                            window.location = 'https://localhost/projetos/Gerenciador_de_tarefas/index/?key=$key';
+                                            #window.location.href = 'https://localhost/projetos/Gerenciador_de_tarefas/src/php/task.php?key=$key'
                                         }
                                         return false
                                     }

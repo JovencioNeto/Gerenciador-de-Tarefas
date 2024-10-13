@@ -10,6 +10,22 @@ body{
     color: #333;
 }
 
+a{
+    text-decoration: none;
+    color: #fff;
+}
+
+a:link{
+    text-decoration: none;
+}
+
+a:visited{
+    text-decoration: none;
+}
+
+a:hover{
+    font-weight: bold;
+}
 button::placeholder{
     font-weight: bold;
 }
@@ -132,4 +148,54 @@ footer{
 footer p {
     color: #999;
     font-size: 12px;
+}
+
+.details-contatainer{
+    background-color: #fff;
+    max-width: 700px;
+    margin-top: 5%;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 12px;
+}
+
+.row{
+    display: flex;
+    justify-content: space-between;
+    padding: 12px;
+}
+
+.details{
+    width: 300px;
+    border: 1px solid #f0f0f5;
+    border-radius: 4px;
+    margin-right: 12px;
+    padding: 16px;
+}
+
+.datails dt dl{
+    margin-top: 4px;
+    margin-bottom: 4px;
+    font-weight: bold;
+    color: #666;
+}
+
+.details dl dd{
+    margin-top: 4px;
+    margin-bottom: 12px;
+     color: #999;
+}
+
+.img{
+    width: 400px;
+    border: 1px solid #f0f0f5;
+    border-radius: 4px;
+    margin-right: 8px;
+    margin-left: 8px;
+    padding: 16px;
+}
+
+.img img{
+    max-width: 100%;
+    height: auto;
 }
